@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Snow Fox</string>
+    <string name="url_padrao">https://www.google.com.br</string>
 </resources>

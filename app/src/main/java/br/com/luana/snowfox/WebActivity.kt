@@ -17,7 +17,40 @@ class WebActivity : AppCompatActivity() {
         this.wbvNavegador.settings.pluginState = WebSettings.PluginState.ON
         this.wbvNavegador.settings.allowFileAccess = true
         this.wbvNavegador.webViewClient = CustomWebViewClient()
-        this.wbvNavegador.loadUrl("http://br.cellep.com")
+        this.wbvNavegador.loadUrl(getString(R.string.url_padrao))
 
+        imvPesquisar.setOnClickListener {
+            pesquisar()
+        }
+
+        imvAvancar.setOnClickListener {
+            avancar()
+        }
+
+        imvHome.setOnClickListener {
+            home()
+        }
+
+        imvVoltar.setOnClickListener {
+            voltar()
+        }
+
+    }
+
+    fun pesquisar(){
+        val url = edtUrl.text.toString().trim()
+        wbvNavegador.loadUrl(url)
+    }
+
+    fun voltar() {
+        wbvNavegador.goBack()
+    }
+
+    fun avancar(){
+        wbvNavegador.goForward()
+    }
+
+    fun home(){
+        wbvNavegador.loadUrl(getString(R.string.url_padrao))
     }
 }
