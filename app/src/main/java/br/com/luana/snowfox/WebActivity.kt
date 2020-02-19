@@ -16,6 +16,7 @@ class WebActivity : AppCompatActivity() {
         this.wbvNavegador.settings.javaScriptEnabled = true
         this.wbvNavegador.settings.pluginState = WebSettings.PluginState.ON
         this.wbvNavegador.settings.allowFileAccess = true
+        this.wbvNavegador.loadUrl("https://www.google.com")
 
     }
 }
