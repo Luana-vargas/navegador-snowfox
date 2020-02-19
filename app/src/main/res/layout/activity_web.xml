@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".WebActivity">
 
+    <ProgressBar
+        android:id="@+id/pbLoading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtUrl" />
+
     <WebView
         android:id="@+id/wbvNavegador"
         android:layout_width="0dp"
@@ -13,7 +24,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtUrl" />
+        app:layout_constraintTop_toBottomOf="@+id/edtUrl" >
+
+    </WebView>
 
     <ImageView
         android:id="@+id/imvVoltar"
@@ -63,6 +76,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="https://www.google.com.br"
+        android:imeOptions="actionSearch"
         app:layout_constraintEnd_toStartOf="@+id/imvPesquisar"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imvHome"

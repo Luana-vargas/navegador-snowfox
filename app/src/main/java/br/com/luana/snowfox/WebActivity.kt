@@ -3,6 +3,7 @@ package br.com.luana.snowfox
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import android.webkit.WebSettings
 import kotlinx.android.synthetic.main.activity_web.*
 
@@ -16,7 +17,7 @@ class WebActivity : AppCompatActivity() {
         this.wbvNavegador.settings.javaScriptEnabled = true
         this.wbvNavegador.settings.pluginState = WebSettings.PluginState.ON
         this.wbvNavegador.settings.allowFileAccess = true
-        this.wbvNavegador.webViewClient = CustomWebViewClient()
+        this.wbvNavegador.webViewClient = CustomWebViewClient(pbLoading)
         this.wbvNavegador.loadUrl(getString(R.string.url_padrao))
 
         imvPesquisar.setOnClickListener {
@@ -33,6 +34,14 @@ class WebActivity : AppCompatActivity() {
 
         imvVoltar.setOnClickListener {
             voltar()
+        }
+
+        edtUrl.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH){
+                pesquisar()
+                true
+            }
+            false
         }
 
     }
