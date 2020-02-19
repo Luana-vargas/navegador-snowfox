@@ -5,14 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 
-class SplashActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         Handler().postDelayed({
-            startActivity(Intent(this@SplashActivity, WebActivity::class.java))
+            startActivity(Intent(this@MainActivity, WebActivity::class.java))
         }, 3000)
     }
 }
