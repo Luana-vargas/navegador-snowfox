@@ -16,6 +16,7 @@ class WebActivity : AppCompatActivity() {
         this.wbvNavegador.settings.javaScriptEnabled = true
         this.wbvNavegador.settings.pluginState = WebSettings.PluginState.ON
         this.wbvNavegador.settings.allowFileAccess = true
+        this.wbvNavegador.webViewClient = CustomWebViewClient()
         this.wbvNavegador.loadUrl("http://br.cellep.com")
 
     }
