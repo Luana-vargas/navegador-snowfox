@@ -65,15 +65,27 @@ class WebActivity : AppCompatActivity() {
     }
 
     private fun voltar() {
-        wbvNavegador.goBack()
+        if (wbvNavegador.canGoBack()) {
+            wbvNavegador.goBack()
+        }
     }
 
     private fun avancar(){
-        wbvNavegador.goForward()
+        if(wbvNavegador.canGoForward()) {
+            wbvNavegador.goForward()
+        }
     }
 
     private fun home(){
         wbvNavegador.loadUrl(getString(R.string.url_padrao))
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK && wbvNavegador.canGoBack()){
+            wbvNavegador.goBack()
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 }
 
