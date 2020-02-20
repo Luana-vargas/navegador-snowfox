@@ -71,7 +71,7 @@ class WebActivity : AppCompatActivity() {
         var url = edtUrl.text.toString().trim()
 
         if (!Patterns.WEB_URL.matcher(url).matches()){
-            showMessage("Url não é valida")
+            //showMessage("Url não é valida")
             wbvNavegador.loadUrl("${getString(R.string.url_padrao)}/search?q=$url")
         } else {
 
