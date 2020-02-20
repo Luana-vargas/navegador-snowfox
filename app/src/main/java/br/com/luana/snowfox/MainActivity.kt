@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         Handler().postDelayed({
             startActivity(Intent(this@MainActivity, WebActivity::class.java))
+            finish()
         }, 3000)
     }
 }
