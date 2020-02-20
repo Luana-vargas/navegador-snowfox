@@ -2,14 +2,20 @@ package br.com.luana.snowfox
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.util.Patterns
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.webkit.WebSettings
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_web.*
+
+private const val WEBACTIVITY = "WA"
 
 class WebActivity : AppCompatActivity() {
 
@@ -18,25 +24,30 @@ class WebActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web)
 
+
+        this.wbvNavegador.setBackgroundColor(getColor(android.R.color.transparent))
         this.wbvNavegador.settings.javaScriptEnabled = true
-        this.wbvNavegador.settings.pluginState = WebSettings.PluginState.ON
         this.wbvNavegador.settings.allowFileAccess = true
-        this.wbvNavegador.webViewClient = CustomWebViewClient(pbLoading, edtUrl)
+        this.wbvNavegador.settings.setSupportZoom(true)
+        this.wbvNavegador.settings.domStorageEnabled = true
+        this.wbvNavegador.settings.setAppCacheEnabled(true)
+        this.wbvNavegador.settings.allowContentAccess = true
+        this.wbvNavegador.webViewClient = CustomWebViewClient(this@WebActivity, pbLoading, edtUrl)
         this.wbvNavegador.loadUrl(getString(R.string.url_padrao))
 
-        imvPesquisar.setOnClickListener {
+        ibtnPesquisar.setOnClickListener {
             pesquisar()
         }
 
-        imvAvancar.setOnClickListener {
+        ibtnAvancar.setOnClickListener {
             avancar()
         }
 
-        imvHome.setOnClickListener {
+        ibtnHome.setOnClickListener {
             home()
         }
 
-        imvVoltar.setOnClickListener {
+        ibtnVoltar.setOnClickListener {
             voltar()
         }
 
@@ -58,21 +69,41 @@ class WebActivity : AppCompatActivity() {
 
     private fun pesquisar(){
         var url = edtUrl.text.toString().trim()
-        if (!url.startsWith("http") || !url.startsWith("https")){
-            url = "https://" + url
+
+        if (!Patterns.WEB_URL.matcher(url).matches()){
+            showMessage("Url não é valida")
+            wbvNavegador.loadUrl("${getString(R.string.url_padrao)}/search?q=$url")
+        } else {
+
+            if (!url.startsWith("http") && !url.startsWith("https")) {
+                url = "http://$url"
+            }
+            Log.d(WEBACTIVITY, "host: $url")
+            wbvNavegador.loadUrl(url)
         }
-        wbvNavegador.loadUrl(url)
+    }
+
+    fun showMessage(msg: String){
+        Toast.makeText(
+            this@WebActivity,
+            msg,
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     private fun voltar() {
         if (wbvNavegador.canGoBack()) {
             wbvNavegador.goBack()
+        } else {
+            showMessage("Ops! Você não tem para onde voltar ;)")
         }
     }
 
     private fun avancar(){
         if(wbvNavegador.canGoForward()) {
             wbvNavegador.goForward()
+        } else {
+            showMessage("Ops! Você não tem para onde avançar :/")
         }
     }
 
@@ -80,12 +111,12 @@ class WebActivity : AppCompatActivity() {
         wbvNavegador.loadUrl(getString(R.string.url_padrao))
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK && wbvNavegador.canGoBack()){
+    override fun onBackPressed() {
+        if (wbvNavegador.canGoBack()){
             wbvNavegador.goBack()
-            return true
+        } else {
+            super.onBackPressed()
         }
-        return super.onKeyDown(keyCode, event)
     }
 }
 
