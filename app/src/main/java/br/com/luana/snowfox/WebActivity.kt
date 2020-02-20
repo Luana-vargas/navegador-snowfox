@@ -56,23 +56,28 @@ class WebActivity : AppCompatActivity() {
 
     }
 
-    fun pesquisar(){
+    private fun pesquisar(){
         var url = edtUrl.text.toString().trim()
         if (!url.startsWith("http") || !url.startsWith("https")){
             url = "https://" + url
         }
+
+        edtUrl.setText(url)
         wbvNavegador.loadUrl(url)
     }
 
-    fun voltar() {
+    private fun voltar() {
+        edtUrl.setText(wbvNavegador.url)
         wbvNavegador.goBack()
     }
 
-    fun avancar(){
+    private fun avancar(){
+        edtUrl.setText(wbvNavegador.url)
         wbvNavegador.goForward()
     }
 
-    fun home(){
+    private fun home(){
+        edtUrl.setText(wbvNavegador.url)
         wbvNavegador.loadUrl(getString(R.string.url_padrao))
     }
 }
