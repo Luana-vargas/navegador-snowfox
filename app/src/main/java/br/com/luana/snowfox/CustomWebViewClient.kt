@@ -62,6 +62,7 @@ class CustomWebViewClient constructor(private val activity: WebActivity, private
     override fun onPageCommitVisible(view: WebView?, url: String?) {
         super.onPageCommitVisible(view, url)
         progressBar.visibility = View.GONE
+        view?.visibility = View.VISIBLE
     }
 
 
