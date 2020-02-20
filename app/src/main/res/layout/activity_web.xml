@@ -28,57 +28,55 @@
 
     </WebView>
 
-    <ImageView
-        android:id="@+id/imvVoltar"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
-
-    <ImageView
-        android:id="@+id/imvAvancar"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toEndOf="@+id/imvVoltar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
-
-    <ImageView
-        android:id="@+id/imvHome"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toEndOf="@+id/imvAvancar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_home_black_24dp" />
-
-    <ImageView
-        android:id="@+id/imvPesquisar"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_search_black_24dp" />
-
     <EditText
         android:id="@+id/edtUrl"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="1dp"
         android:ems="10"
-        android:inputType="textUri"
         android:imeOptions="actionGo"
+        android:inputType="textUri"
         android:text="@string/url_padrao"
-        app:layout_constraintEnd_toStartOf="@+id/imvPesquisar"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imvHome"
+        app:layout_constraintEnd_toStartOf="@+id/ibtnPesquisar"
+        app:layout_constraintStart_toEndOf="@+id/ibtnHome"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ibtnVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/ibtnAvancar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/ibtnVoltar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/ibtnHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/ibtnAvancar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_home_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/ibtnPesquisar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_search_black_24dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
