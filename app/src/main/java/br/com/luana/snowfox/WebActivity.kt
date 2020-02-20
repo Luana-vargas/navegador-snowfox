@@ -21,7 +21,7 @@ class WebActivity : AppCompatActivity() {
         this.wbvNavegador.settings.javaScriptEnabled = true
         this.wbvNavegador.settings.pluginState = WebSettings.PluginState.ON
         this.wbvNavegador.settings.allowFileAccess = true
-        this.wbvNavegador.webViewClient = CustomWebViewClient(pbLoading)
+        this.wbvNavegador.webViewClient = CustomWebViewClient(pbLoading, edtUrl)
         this.wbvNavegador.loadUrl(getString(R.string.url_padrao))
 
         imvPesquisar.setOnClickListener {
@@ -61,23 +61,18 @@ class WebActivity : AppCompatActivity() {
         if (!url.startsWith("http") || !url.startsWith("https")){
             url = "https://" + url
         }
-
-        edtUrl.setText(url)
         wbvNavegador.loadUrl(url)
     }
 
     private fun voltar() {
-        edtUrl.setText(wbvNavegador.url)
         wbvNavegador.goBack()
     }
 
     private fun avancar(){
-        edtUrl.setText(wbvNavegador.url)
         wbvNavegador.goForward()
     }
 
     private fun home(){
-        edtUrl.setText(wbvNavegador.url)
         wbvNavegador.loadUrl(getString(R.string.url_padrao))
     }
 }
